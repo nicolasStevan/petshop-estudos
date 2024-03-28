@@ -8,17 +8,19 @@ import jakarta.persistence.Id;
 @Entity
 public class Cliente  {
     @Id
-    private int idCliente;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id_cliente;
     private String nome;
     private String cpf;
     private String sexo;
+    private int animal_idanimal;
 
-    public int getIdCliente() {
-        return idCliente;
+    public int getId_cliente() {
+        return id_cliente;
     }
 
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
+    public void setId_cliente(int id_cliente) {
+        this.id_cliente = id_cliente;
     }
 
     public String getNome() {
@@ -43,5 +45,13 @@ public class Cliente  {
 
     public void setSexo(String sexo) {
         this.sexo = sexo;
+    }
+
+    public int getAnimal_idanimal() {
+        return animal_idanimal;
+    }
+
+    public void setAnimal_idanimal(int animal_idanimal) {
+        this.animal_idanimal = animal_idanimal;
     }
 }
