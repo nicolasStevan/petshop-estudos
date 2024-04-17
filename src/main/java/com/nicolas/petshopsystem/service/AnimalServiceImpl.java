@@ -20,4 +20,9 @@ public class AnimalServiceImpl implements AnimalService {
     public List<Animal> getAllAnimais(){
         return animalRepository.findAll();
     }
+   @Override
+   public  void deleteAnimal(int id){
+        animalRepository.deleteById(id);
+   }
+
 }

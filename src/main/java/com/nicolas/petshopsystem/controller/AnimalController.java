@@ -3,6 +3,7 @@ package com.nicolas.petshopsystem.controller;
 import com.nicolas.petshopsystem.model.Animal;
 import com.nicolas.petshopsystem.service.AnimalService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,4 +24,11 @@ public class AnimalController {
     public List<Animal>getAllAnimais(){
         return animalService.getAllAnimais();
     }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteAnimal(@PathVariable int id){
+        animalService.deleteAnimal(id);
+        return ResponseEntity.ok("Animal Excluido com sucesso!");
+    }
+
 }

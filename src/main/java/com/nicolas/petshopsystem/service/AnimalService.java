@@ -8,4 +8,6 @@ public interface AnimalService {
     public Animal salvarAnimal(Animal animal);
 
     public List<Animal> getAllAnimais();
+
+    public void deleteAnimal(int id);
 }

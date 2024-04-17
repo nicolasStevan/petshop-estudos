@@ -22,4 +22,12 @@ public class ClienteServiceImpl implements ClienteService {
     public List<Cliente> getAllClientes() {
         return clienteRepository.findAll();
     }
+    @Override
+    public Cliente findByNomeAndCpf(String nome, String cpf) {
+        return clienteRepository.findByNomeAndCpf(nome, cpf);
+    }
+    @Override
+    public Cliente login(String nome, String cpf) {
+        return clienteRepository.findByNomeAndCpf(nome, cpf);
+    }
 }
