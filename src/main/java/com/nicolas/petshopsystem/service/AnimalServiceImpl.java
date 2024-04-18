@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AnimalServiceImpl implements AnimalService {
@@ -24,5 +25,20 @@ public class AnimalServiceImpl implements AnimalService {
    public  void deleteAnimal(int id){
         animalRepository.deleteById(id);
    }
+    @Override
+    public Animal updateAnimal(int id, Animal animal) {
+        Animal animalToUpdate = animalRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Animal não encontrado"));
+
+        animalToUpdate.setNome(animal.getNome());
+        animalToUpdate.setRaca(animal.getRaca());
+        animalToUpdate.setPeso(animal.getPeso());
+
+        return animalRepository.save(animalToUpdate);
+    }
+    @Override
+    public Optional<Animal> getAnimalById(int id) {
+        return animalRepository.findById(id);
+    }
 
 }

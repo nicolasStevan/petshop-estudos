@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/animal")
@@ -25,10 +26,23 @@ public class AnimalController {
         return animalService.getAllAnimais();
     }
 
+    @GetMapping("/show/{id}")
+    public ResponseEntity<Animal> show(@PathVariable int id){
+        Optional<Animal> animal = animalService.getAnimalById(id);
+        return animal.map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteAnimal(@PathVariable int id){
         animalService.deleteAnimal(id);
         return ResponseEntity.ok("Animal Excluido com sucesso!");
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<String> updateAnimal(@PathVariable int id, @RequestBody Animal animal){
+        animalService.updateAnimal(id, animal);
+        return ResponseEntity.ok("Animal Atualizado com Sucesso");
     }
 
 }
